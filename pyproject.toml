@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "courtwatch"
+version = "0.1.0"
+description = "Track Indian court cases for advocates and send WhatsApp reminders the day before each hearing."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+]
+
+[project.optional-dependencies]
+ocr = ["pytesseract>=0.3.10", "Pillow>=10"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+courtwatch = "courtwatch.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["courtwatch*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
